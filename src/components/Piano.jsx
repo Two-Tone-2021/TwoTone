@@ -14,14 +14,14 @@ import {
   UCircle,
   JCircle,
   KCircle,
-} from "./shapes/circles";
+} from "./shapes/circles.jsx";
 
 // all the components wee need for the visualizer to work will live on this compnent
 // base on the value of the state, it will render the value of the key of the obj
 // the state gets updated every time a new key is pressed
 // updates state usinh setShapes; pass the new value of state in an array
 
-function Distortion() {
+const Piano = () => {
   const [CNote, setCNote] = useState(false); // a
   const [CsharpNote, setCsharpNote] = useState(false); // w
   const [DNote, setDNote] = useState(false); // s
@@ -52,42 +52,7 @@ function Distortion() {
     "C4",
   ];
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-    const ac = new AudioContext();
-    const biquad = ac.createBiquadFilter(); 
-    const distortion = ac.createWaveShaper();
-    function makeDistortionCurve(amount) {
-      var k = typeof amount === "number" ? amount : 50,
-        n_samples = 44100,
-        curve = new Float32Array(n_samples),
-        deg = Math.PI / 180,
-        i = 0,
-        x;
-      for (; i < n_samples; ++i) {
-        x = (i * 2) / n_samples - 1;
-        curve[i] = ((3 + k) * x * 20 * deg) / (Math.PI + k * Math.abs(x));
-      }
-      return curve;
-    }
-    distortion.curve = makeDistortionCurve(100);
-    biquad.type = "lowshelf";
-    biquad.frequency.value = 1000
-    for (let i = 0; i < nodes.length; i++) {
-        let newNode = ac.createMediaElementSource(document.getElementById(nodes[i]));
-        newNode.connect(biquad)
-        biquad.connect(distortion)  
-      }
-    
-    distortion.connect(ac.destination) 
 
-
-    // cleanup this component
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };  
-  }, []);
   const handleKeyDown = (event) => {
     if (event.code === "KeyA") {
       setCNote(true);
@@ -248,8 +213,15 @@ function Distortion() {
     }
   };
 
-  
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
+    // cleanup this component
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
     <div>
       <div>
@@ -364,9 +336,10 @@ function Distortion() {
       </div>
     </div>
   );
+
 }
 
 export default connect(
   null,
   {} //pass in actions here
-)(Distortion);
+)(Piano);
