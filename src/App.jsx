@@ -23,16 +23,18 @@ const App = () => {
 
   return (
     <div className="windowDiv">
-      <button className="routeButton" style={{backgroundColor: "#7AB44D" }} value="Piano" onClick={handleClick}></button>
-      <button className="routeButton" style={{backgroundColor: "#7AB44F" }} value="Mellow" onClick={handleClick}></button>
-      <button className="routeButton" style={{backgroundColor: "#7AB44D" }} value="Filter" onClick={handleClick}></button>
+      <div>
+        <button className="routeButton" style={{backgroundColor: "#7AB44D" }} value="Piano" onClick={handleClick}></button>
+        <button className="routeButton" style={{backgroundColor: "#E1C12A" }} value="Mellow" onClick={handleClick}></button>
+        <button className="routeButton" style={{backgroundColor: "#54ABD1" }} value="Filter" onClick={handleClick}></button>
+      </div>
       <Switch>
         <Route exact path='/filter'>
           <Filter />
         </Route>
-        <Route exact path='/mellow'>
-          {/* <Distortion /> */}
-          <Mellow />
+        <Route exact path='/distortion'>
+          <Distortion />
+          {/* <Mellow /> */}
         </Route>
         <Route path='/'>
           <Piano />
