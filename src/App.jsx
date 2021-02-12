@@ -14,8 +14,8 @@ const App = () => {
   const handleClick = (e) => {
     if (e.target.value === "Piano") {
       history.push('/')
-    } else if (e.target.value === "Mellow") {
-      history.push('/mellow')
+    } else if (e.target.value === "Distortion") {
+      history.push('/distortion')
     } else if (e.target.value === "Filter") {
       history.push('/filter')
     }
@@ -25,16 +25,15 @@ const App = () => {
     <div className="windowDiv">
       <div>
         <button className="routeButton" style={{backgroundColor: "#7AB44D" }} value="Piano" onClick={handleClick}></button>
-        <button className="routeButton" style={{backgroundColor: "#E1C12A" }} value="Mellow" onClick={handleClick}></button>
+        <button className="routeButton" style={{backgroundColor: "#E1C12A" }} value="Distortion" onClick={handleClick}></button>
         <button className="routeButton" style={{backgroundColor: "#54ABD1" }} value="Filter" onClick={handleClick}></button>
       </div>
       <Switch>
         <Route exact path='/filter'>
-          <Filter />
+          <Mellow />
         </Route>
         <Route exact path='/distortion'>
           <Distortion />
-          {/* <Mellow /> */}
         </Route>
         <Route path='/'>
           <Piano />

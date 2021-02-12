@@ -31,48 +31,42 @@ const Mellow = () => {
   const [BNote, setBNote] = useState(false); // j
   const [highCNote, setHighCNote] = useState(false); // k
 
+  const nodes = [
+    "C3",
+    "C3Sharp",
+    "D3",
+    "D3Sharp",
+    "E3",
+    "F3",
+    "F3Sharp",
+    "G3",
+    "G3Sharp",
+    "A3",
+    "A3Sharp",
+    "B3",
+    "C4",
+  ];
 
-  
-  
-   
-  //   const ac = new AudioContext()
-  //   const dest = ac.createMediaStreamDestination();
-  //   const biquad = ac.createBiquadFilter()
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
-  //   const mediaRecorder = new MediaRecorder(dest.stream);
-  //   if (!clicked) {
-  //     // const captureStream = ele.captureStream()
-  //     const track2 = ac.createMediaElementSource(document.getElementById("E3"))
-  //     const track1 = ac.createMediaElementSource(document.getElementById("C3"))
-  //     biquad.type = "hishelf";
-  //     track1.connect(biquad)
-  //     track2.connect(biquad)
-  //     // distortion.connect(biquad)
-  //     biquad.connect(ac.destination)
-  //     // track2.connect(dest)
-  //     // track1.connect(ac.destination)
-  //     // track2.connect(ac.destination)
-  //     // mediaRecorder.connect(ac.destination)
-  //     // mediaRecorder.start();
-  //     // e.target.textContent = "Stop recording";
-  //     // clicked = true;
-  //   } else {
-  //     mediaRecorder.stop();
-  //     e.target.disabled = true;
-  //   }
-    
-  //   mediaRecorder.ondataavailable = (e) => {
-  //     // push each chunk (blobs) in an array
-  //     chunks.push(e.data);
-  //   };
-  //   mediaRecorder.onstop = (e) => {
-  //     const blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
-  //     document.getElementById("blob").src = URL.createObjectURL(blob);
-  //   };
-  // };
-    
-    
- 
+    const ac = new AudioContext();
+    const biquad = ac.createBiquadFilter();
+    // biquad.frequency.value = 3000
+    biquad.type = 'lowpass';
+  
+    let elementSources = [];
+    for (let i = 0; i < nodes.length; i++) {
+      let newNode = ac.createMediaElementSource(document.getElementById(nodes[i]));
+      newNode.connect(biquad)
+    }
+    biquad.connect(ac.destination)
+    // cleanup this component
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const handleKeyDown = (event) => {
     //updates state using

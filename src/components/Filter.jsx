@@ -14,6 +14,11 @@ import {
   UCircle,
   JCircle,
   KCircle,
+  ODiamond,
+  LDiamond,
+  PDiamond,
+  SemicolonDiamond,
+  QuoteDiamond
 } from "./shapes/circles.jsx";
 
 // all the components we need for the visualizer to work will live on this compnent

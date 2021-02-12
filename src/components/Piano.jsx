@@ -14,6 +14,12 @@ import {
   UCircle,
   JCircle,
   KCircle,
+  OCircle,
+  LCircle,
+  PCircle,
+  SemicolonCircle,
+  QuoteCircle,
+
 } from "./shapes/circles.jsx";
 
 // all the components wee need for the visualizer to work will live on this compnent
@@ -35,6 +41,12 @@ const Piano = () => {
   const [AsharpNote, setAsharpNote] = useState(false); // u
   const [BNote, setBNote] = useState(false); // j
   const [highCNote, setHighCNote] = useState(false); // k
+  const [C4SharpNote, setC4SharpNote] = useState(false); // k
+  const [D4Note, setD4Note] = useState(false); // k
+  const [D4SharpNote, setD4SharpNote] = useState(false); // k
+  const [E4Note, setE4Note] = useState(false); // k
+  const [F4Note, setF4Note] = useState(false); // k
+
 
   const nodes = [
     "C3",
@@ -131,6 +143,36 @@ const Piano = () => {
       document.getElementById("C4").volume = 0.1;
       document.getElementById("C4").play();
     }
+    
+    if (event.code === "KeyO") {
+      setC4SharpNote(true);
+      document.getElementById("C4Sharp").volume = 0.1;
+      document.getElementById("C4Sharp").play();
+    }
+
+    if (event.code === "KeyL") {
+      setD4Note(true);
+      document.getElementById("D4").volume = 0.1;
+      document.getElementById("D4").play();
+    }
+   
+    if (event.code === "KeyP") {
+      setD4SharpNote(true);
+      document.getElementById("D4Sharp").volume = 0.1;
+      document.getElementById("D4Sharp").play();
+    }
+   
+    if (event.code === "Semicolon"){
+      setE4Note(true);
+      document.getElementById("E4").volume = 0.1;
+      document.getElementById("E4").play();
+    }
+   
+    if (event.code === "Quote"){
+      setF4Note(true);
+      document.getElementById("F4").volume = 0.1;
+      document.getElementById("F4").play();
+    }
   };
 
   const handleKeyUp = (event) => {
@@ -211,6 +253,35 @@ const Piano = () => {
       document.getElementById("C4").pause();
       document.getElementById("C4").currentTime = 0;
     }
+
+    if (event.code === "KeyO"){
+      setC4SharpNote(false);
+      document.getElementById("C4Sharp").pause();
+      document.getElementById("C4Sharp").currentTime = 0;
+    }
+    
+    if (event.code === "KeyL"){
+      setD4Note(false);
+      document.getElementById("D4").pause();
+      document.getElementById("D4").currentTime = 0;
+    }
+    if (event.code === "KeyP"){
+      setD4SharpNote(false);
+      document.getElementById("D4Sharp").pause();
+      document.getElementById("D4Sharp").currentTime = 0;
+    }
+    if (event.code === "Semicolon"){
+      setE4Note(false);
+      document.getElementById("E4").pause();
+      document.getElementById("E4").currentTime = 0;
+    }
+    if (event.code === "Quote"){
+      setF4Note(false);
+      document.getElementById("F4").pause();
+      document.getElementById("F4").currentTime = 0;
+    }
+
+   
   };
 
   useEffect(() => {
@@ -238,6 +309,11 @@ const Piano = () => {
         <audio id="A3Sharp" src="./src/assets/A3Sharp.mp3"></audio>
         <audio id="B3" src="./src/assets/B3.mp3"></audio>
         <audio id="C4" src="./src/assets/C4.mp3"></audio>
+        <audio id="C4Sharp" src="./src/assets/C4Sharp.mp3"></audio>
+        <audio id="D4" src="./src/assets/D4.mp3"></audio>
+        <audio id="D4Sharp" src="./src/assets/D4Sharp.mp3"></audio>
+        <audio id="E4" src="./src/assets/E4.mp3"></audio>
+        <audio id="F4" src="./src/assets/F4.mp3"></audio>
       </div>
       <div id="container">
         <div id="circleContainer">
@@ -332,11 +408,45 @@ const Piano = () => {
               }[highCNote]
             }
           </div>
+          <div>
+            {
+              {
+                true: <OCircle />,
+              }[C4SharpNote]
+            }
+          </div>
+          <div>
+            {
+              {
+                true: <LCircle />,
+              }[D4Note]
+            }
+          </div>
+          <div>
+            {
+              {
+                true: <PCircle />,
+              }[D4SharpNote]
+            }
+          </div>
+          <div>
+            {
+              {
+                true: <SemicolonCircle />,
+              }[E4Note]
+            }
+          </div>
+          <div>
+            {
+              {
+                true: <QuoteCircle />,
+              }[F4Note]
+            }
+          </div>
         </div>
       </div>
     </div>
   );
-
 }
 
 export default connect(
