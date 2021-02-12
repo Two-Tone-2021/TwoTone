@@ -52,6 +52,22 @@ const KDiamond = () => {
   return <div id="KCircle" className="diamond fade-in"></div>;
 };
 
+const ODiamond = () => {
+  return <div id="OCircle" className="diamond fade-out"></div>;
+};
+const LDiamond = () => {
+  return <div id="LCircle" className="diamond fade-out"></div>;
+};
+const PDiamond = () => {
+  return <div id="PCircle" className="diamond fade-out"></div>;
+};
+const SemicolonDiamond = () => {
+  return <div id="SemicolonCircle" className="diamond fade-out"></div>;
+};
+const QuoteDiamond = () => {
+  return <div id="QuoteCircle" className="diamond fade-out"></div>;
+};
+
 export{
   ADiamond,
   WDiamond,
@@ -66,4 +82,9 @@ export{
   UDiamond,
   JDiamond,
   KDiamond,
+  ODiamond,
+  LDiamond,
+  PDiamond,
+  SemicolonDiamond,
+  QuoteDiamond
 };

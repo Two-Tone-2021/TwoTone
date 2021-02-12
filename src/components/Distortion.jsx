@@ -14,7 +14,7 @@ import {
   UCircle,
   JCircle,
   KCircle,
-} from "./shapes/circles.jsx";
+} from "./shapes/squares.jsx";
 
 // all the components wee need for the visualizer to work will live on this compnent
 // base on the value of the state, it will render the value of the key of the obj
@@ -71,7 +71,7 @@ function Distortion() {
       }
       return curve;
     }
-    distortion.curve = makeDistortionCurve(100);
+    distortion.curve = makeDistortionCurve(20);
     biquad.type = "lowshelf";
     biquad.frequency.value = 1000
     for (let i = 0; i < nodes.length; i++) {

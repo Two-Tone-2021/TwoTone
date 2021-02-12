@@ -52,6 +52,21 @@ const JCircle = () => {
 const KCircle = () => {
   return <div id="KCircle" className="circle fade-out"></div>;
 };
+const OCircle = () => {
+  return <div id="OCircle" className="circle fade-out"></div>;
+};
+const LCircle = () => {
+  return <div id="LCircle" className="circle fade-out"></div>;
+};
+const PCircle = () => {
+  return <div id="PCircle" className="circle fade-out"></div>;
+};
+const SemicolonCircle = () => {
+  return <div id="SemicolonCircle" className="circle fade-out"></div>;
+};
+const QuoteCircle = () => {
+  return <div id="QuoteCircle" className="circle fade-out"></div>;
+};
 
 export {
   ACircle,
@@ -67,4 +82,9 @@ export {
   UCircle,
   JCircle,
   KCircle,
+  OCircle,
+  LCircle,
+  PCircle,
+  SemicolonCircle,
+  QuoteCircle
 };
